@@ -1,7 +1,7 @@
 import streamlit as st
 
 # App Title
-st.title("Custom Armor Customizer")
+st.title("Custom Armour Customiser")
 st.subheader("Create your own custom armor and generate AI-ready descriptions.")
 
 # Sidebar: Armor Customization
