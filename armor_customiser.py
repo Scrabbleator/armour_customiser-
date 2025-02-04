@@ -1,18 +1,28 @@
 import streamlit as st
 import subprocess
+import sys
 
-# Ensure OpenAI and other dependencies are installed
+# Function to ensure required packages are installed
+def install_package(package):
+    subprocess.run([sys.executable, "-m", "pip", "install", package], check=True)
+
+# Install missing dependencies
 try:
     import openai
 except ModuleNotFoundError:
-    subprocess.run(["pip", "install", "openai"])
+    install_package("openai")
     import openai
 
-import requests
+try:
+    import requests
+except ModuleNotFoundError:
+    install_package("requests")
+    import requests
+
 from PIL import Image
 from io import BytesIO
 
-# Set up OpenAI API Key
+# Set OpenAI API Key
 openai.api_key = "YOUR_OPENAI_API_KEY"  # Replace with your actual API key
 
 # App Title
@@ -108,3 +118,4 @@ if st.button("Generate Armor Image"):
             )
         except Exception as e:
             st.error(f"Error generating image: {e}")
+
